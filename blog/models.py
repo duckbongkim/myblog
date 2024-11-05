@@ -56,6 +56,7 @@ from django.db import models
 class Post(models.Model):
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, blank=True, null=True)
     tags = models.ManyToManyField('Tag', blank=True)
+    
     title = models.CharField('TITLE', max_length=50)
     description = models.CharField('DESCRIPTION', max_length=100, blank=True, help_text='simple one-line text.')
     image = models.ImageField('IMAGE', upload_to='blog/%Y/%m/', blank=True, null=True)

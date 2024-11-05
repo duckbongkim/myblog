@@ -1,50 +1,9 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="kr">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Agency - Start Bootstrap Theme</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="#page-top">Dongjin</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ms-1"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#page-top">HOME</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">BLOG</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">IAM</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">ADMIN</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container">
-                <div class="masthead-subheading">Welcome To My Blog!</div>
-                <div class="masthead-heading text-uppercase">DONGJIN 블로그에 오신걸 환영합니다.</div>
-            </div>
-        </header>
-        <!-- Services-->
-        
+{% block title %}index.html{% endblock %}
+
+ 
+        {% block content %}
         <!-- Portfolio Grid-->
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
@@ -53,55 +12,24 @@
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                    <div v-for='post in postList' :key='post.id' class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 1-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link"  href="{% url 'blog:post_detail' 1 %}">
+                            <a class="portfolio-link"  :href="`/blog/post/${post.id}/#post`">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="{% static 'assets/img/portfolio/1.jpg' %}" alt="..." />
+                                <img class="img-fluid" :src="post.image" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Threads</div>
-                                <div class="portfolio-caption-subheading text-muted">Illustration</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 2-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="{% static 'assets/img/portfolio/2.jpg' %}" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Explore</div>
-                                <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 3-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="{% static 'assets/img/portfolio/3.jpg' %}" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Finish</div>
-                                <div class="portfolio-caption-subheading text-muted">Identity</div>
+                                <div class="portfolio-caption-heading">[[post.title]]</div>
+                                <div class="portfolio-caption-subheading text-muted">[[post.category]]</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- About-->
         
         <!-- Team-->
         <section class="page-section bg-light" id="team">
@@ -148,10 +76,12 @@
                 </div>
             </div>
         </section>
-        <!-- Clients-->
+        {% endblock %}
+
         
-        <!-- Contact-->
         
+
+        {% block footer %}
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
@@ -169,17 +99,40 @@
                 </div>
             </div>
         </footer>
-        <!-- Portfolio Modals-->
+        {% endblock %}
 
-    
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="{% static 'js/scripts.js' %}"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
-</html>
+        {% block extra-script %}
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+        <script>
+
+            const PostListApp = {
+                delimiters:['[[',']]'], //뷰 장고 템플릿 충동방지
+                data() { // data 를 호출하면 postlist 를 반환
+                    return {
+                        postList:[] // Post 목록 데이터를 저장할 변수
+                    };
+                },
+                created() { // created(요소가 생성되는 단계)단계에서 아래 작업을 수행 
+                    console.log("created()..."); // 콘솔에 로그를 찍음
+                    this.fetchPostList() // 게시글 목록들 가져옴
+                },
+                methods: {
+                    fetchPostList() {
+                        axios.get('/api/post/list')
+                        .then(res => { // axios.get 이 성공을 하면 아래 코드를 수행
+                            console.log("FETCH POSTLIST GET RES",res);
+                            this.postList = res.data;
+                        })
+                        .catch(err => { // axios.get 이 실패 했을경우 아래 코드를 수행
+                            console.log("FETCH POSTLIST GET ERR.RESPONSE",err.response);
+                            alert('${err.response.status}${err.response.statusText}');
+                        });
+                    },
+                },
+            };
+
+
+            Vue.createApp(PostListApp).mount('#page-top');
+        </script>
+        {% endblock %}
