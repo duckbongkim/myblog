@@ -2,7 +2,24 @@
 {% load static %}
 {% block title %}index.html{% endblock %}
 
- 
+{% block extra-style %}
+
+    <style>
+        .my-img-h300 {
+            width:100%;
+            height:300px;
+            object-fit:fill;
+        }
+
+        .my-post-title {
+            height: 60px;
+        }
+
+    </style>
+
+{% endblock %}
+
+
         {% block content %}
         <!-- Portfolio Grid-->
         <section class="page-section bg-light" id="portfolio">
@@ -19,11 +36,11 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" :src="post.image" alt="..." />
+                                <img class="img-fluid my-img-h300" :src="post.image" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">[[post.title]]</div>
-                                <div class="portfolio-caption-subheading text-muted">[[post.category]]</div>
+                                <div class="portfolio-caption-heading my-post-title">[[post.title]]</div>
+                                <div class="portfolio-caption-subheading text-muted my-post-category">[[post.category]]</div>
                             </div>
                         </div>
                     </div>
@@ -102,37 +119,5 @@
         {% endblock %}
 
         {% block extra-script %}
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
-        <script>
-
-            const PostListApp = {
-                delimiters:['[[',']]'], //뷰 장고 템플릿 충동방지
-                data() { // data 를 호출하면 postlist 를 반환
-                    return {
-                        postList:[] // Post 목록 데이터를 저장할 변수
-                    };
-                },
-                created() { // created(요소가 생성되는 단계)단계에서 아래 작업을 수행 
-                    console.log("created()..."); // 콘솔에 로그를 찍음
-                    this.fetchPostList() // 게시글 목록들 가져옴
-                },
-                methods: {
-                    fetchPostList() {
-                        axios.get('/api/post/list')
-                        .then(res => { // axios.get 이 성공을 하면 아래 코드를 수행
-                            console.log("FETCH POSTLIST GET RES",res);
-                            this.postList = res.data;
-                        })
-                        .catch(err => { // axios.get 이 실패 했을경우 아래 코드를 수행
-                            console.log("FETCH POSTLIST GET ERR.RESPONSE",err.response);
-                            alert('${err.response.status}${err.response.statusText}');
-                        });
-                    },
-                },
-            };
-
-
-            Vue.createApp(PostListApp).mount('#page-top');
-        </script>
+        {% include 'include/post_list_vue.html' %}
         {% endblock %}
