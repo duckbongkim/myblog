@@ -6,23 +6,35 @@
         delimiters:['[[',']]'], //뷰 장고 템플릿 충동방지
         data() { // data 를 호출하면 postlist 를 반환
             return {
-                postList:[] // Post 목록 데이터를 저장할 변수
+                postList:[], // Post 목록 데이터를 저장할 변수
+                catagory:'',
+                tag:''
+
             };
         },
         created() { // created(요소가 생성되는 단계)단계에서 아래 작업을 수행 
             console.log("created()..."); // 콘솔에 로그를 찍음
+            const params = new URL (location).searchParams;
+            this.category = params.get('category');
+            this.tag = params.get('tag');
             this.fetchPostList() // 게시글 목록들 가져옴
         },
         methods: {
             fetchPostList() {
-                axios.get('/api/post/list')
+                console.log('fetchPostList()...',this.category, this.tag)
+                let getUrl ='';
+                if (this.category) getUrl = `/api/post/list/?category=${this.category}`;
+                else if (this.tag) getUrl =`/api/post/list/?tag=${this.tag}`;
+                else getUrl ='/api/post/list';
+                
+                axios.get(getUrl)
                 .then(res => { // axios.get 이 성공을 하면 아래 코드를 수행
-                    console.log("FETCH POSTLIST GET RES",res);
+                    console.log("FETCH POSTLIST GET RES",res, getUrl);
                     this.postList = res.data;
                 })
                 .catch(err => { // axios.get 이 실패 했을경우 아래 코드를 수행
                     console.log("FETCH POSTLIST GET ERR.RESPONSE",err.response);
-                    alert('${err.response.status}${err.response.statusText}');
+                    alert(`${err.response.status}${err.response.statusText}`);
                 });
             },
         },
