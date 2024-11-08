@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <button onclick="window.print()">Print this page</button> -->
+    <!-- <h1>My First Web Page</h1> -->
+    <script>
+    //    let hello = function(a) {
+    //     console.log('안녕하세요.',a)
+    //    }
+
+    //    const hellow = hello 
+    //    hellow(10);
+    //    hellow(20);
+       
+
+    //    function hello2() {
+    //     console.log('안녕하세요.')
+    //    }
+    //    const hellow2 = hello2
+    //    hellow2();
+    //    hello2();
+    // const firstName = "Alice";
+    // const lastName = "Johnson";
+    // const fullName = firstName + " " + lastName;
+    // console.log(fullName); // "Alice Johnson" 출력
+    // console.log('1'+2)
+
+    // const text = "Hello, World!";
+    // console.log(text.length); // 13 출력
+    // console.log(text.substring(0, 5)); 
+    // console.log(text.slice(7, 12)); 
+
+    // let x = 5;
+    // let y = ++x;
+    // console.log(x); // 6 출력 (x의 값이 1 증가)
+    // console.log(y); // 6 출력 (증가된 x의 값)
+    
+    // let a = 10;
+    // let b = a++;
+    // console.log(a); // 11 출력 (a의 값이 1 증가)
+    // console.log(b); // 10 출력 (증가되기 전의 a의 값)
+
+    // const age = 30;
+    // const vote = (age >=20)?"투표가능" : "투표불가능";
+    // console.log(vote)
+
+    // let fTemp = 122;
+    // let cTemp = (fTemp-32)*(5/9)
+    // console.log(cTemp)
+
+    // let num1 = 456;
+    // let num2 = 111;
+    
+    // num1 = num1 - (num1%100)
+    // num2 = num2 - (num2%100)
+
+    // console.log(num1)
+    // console.log(num2)
+    
+    // let num = 12345;
+    //         // 숫자는 10000의 자리수만 제공
+
+    //         let num1 = num - 12345 % 10000; // 10000
+    //         let num2 = num - num % 1000 - num1;//2000
+    //         let num3 = num - num%100 -num1 -num2;// 300
+    //         let num4 = num - num%10 -num1 -num2 -num3; //40
+    //         let num5 = num%10 //5
+    //         console.log(num1/10000 + num2/1000+ num3/100 + num4/10 + num5)
+
+    // let numStr = num.toString();
+
+    // let one = Number(numStr[4])
+    // let two = Number(numStr[3])
+    // let three = Number(numStr[2])
+    // let four = Number(numStr[1])
+    // let five = Number(numStr[0])
+
+    // console.log(one+two+three+four+five)
+
+    // let input = Number(prompt('숫자를 입력해주세요', '숫자'));
+
+    // switch(input % 2) {
+    //     case 0:
+    //         console.log("짝수")
+    //         break;
+    //     case 1:
+    //     console.log("홀수")
+    //         break;
+    //     default:
+    //     console.log('예외')
+    // }
+
+    // for (let i=0; i<=100; i++) {
+    //     console.log(i)
+    // }
+
+    // for (let i=1; i<=5; i++) {
+    //     let s = "";
+    //     for (let j=1; j<=i; j++){
+    //       s += "*";  
+    //     }
+    //     console.log(s)
+    // }
+
+    // for (let a=5; a>=1; a--){
+    //     let c = "";
+    //     for (let b=a; b>=1; b--){
+    //         c +="*"
+    //     }
+    //     console.log(c)
+    // }
+
+//     function printAll(...args) {
+//   for (let i = 0; i < args.length; i++) {
+//     console.log(args[i]);
+//   }
+// }
+
+// printAll('java', 'script', 'html/css');
+
+// function operate(a, b, operation) {
+//   return operation(a, b);
+// }
+
+// const addition = function (x, y) {
+//   return x + y;
+// };
+
+// const subtraction = function (x, y) {
+//   return x - y;
+// };
+
+// console.log(operate(5, 3, addition)); // 출력: 8
+// console.log(operate(5, 3, subtraction)); // 출력: 2
+
+
+
+// function createCounter() {
+//   let count = 10; // 지역 변수
+
+//   function increment() {
+//     count++;
+//     console.log(count);
+//   }
+
+//   return increment;
+// }
+
+// const counter1 = createCounter();
+// counter1(); // 출력: 1
+// counter1(); // 출력: 2
+
+// const counter2 = createCounter();
+// counter2(); // 출력: 1 (독립된 클로저)
+
+// function createItemTemplate(category) {
+//   const items = [];
+
+//   return function addItem(item) {
+//     items.push({ category, item });
+//     console.log(items);
+//   };
+// }
+
+// const addFruit = createItemTemplate('Fruit');
+// addFruit('Apple'); // 출력: [{ category: 'Fruit', item: 'Apple' }]
+// addFruit('Banana'); // 출력: [{ category: 'Fruit', item: 'Apple' }, { category: 'Fruit', item: 'Banana' }]
+// addFruit('dong')
+
+// const addVegetable = createItemTemplate('Vegetable');
+// addVegetable('Carrot'); // 출력: [{ category: 'Vegetable', item: 'Carrot' }]
+
+// const filterEvenNumbers = numbers => numbers.filter(numbers => numbers%2 ==0);
+// const numbers = [1, 2, 3, 4, 5, 6];
+// const evenNumbers = filterEvenNumbers(numbers);
+// console.log(evenNumbers); // [2, 4, 6] 출력
+// console.log(numbers)
+
+// const filterLongStrings = strings => strings.filter( strings => strings.length >= 5)
+// const strings = ['apple', 'banana', 'cherry', 'date', 'fig'];
+// const longStrings = filterLongStrings(strings);
+// console.log(longStrings); // ['banana', 'cherry'] 출력
+
+
+    </script>
+</body>
+</html>

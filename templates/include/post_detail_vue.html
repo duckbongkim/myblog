@@ -46,7 +46,7 @@
             fetchCateTagList() {
                 console.log('fetchCateTagList()...')
 
-                axios.get('/api/catetag/')
+                axios.get('/api/catetag')
                 .then(res => {
                     console.log('FETCH CATETAG LIST RES',res);
                     this.cateList = res.data.cateList;
